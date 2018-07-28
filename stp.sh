@@ -18,13 +18,14 @@ apt -y upgrade
 
 echo "Installing basic dependencies..."
 # install python dependencies
-apt -y install python-dev python-pip wget git
+apt -y install python-dev python-pip wget git build-essential 
 
 echo "Installing iRRViTools..."
 # install irrvitools to $HOME
 cd ~
 git clone https://github.com/kennetanti/irrvitools
 # ensure proper ownership (avoids SUID exploit because trust no one) (but really im poor so trust... people :'( github can be bribed AND THAT COUNTS AS A FUCKING SECURITY HOLE. FUCK YOU ETHICAL HACKING... )
+
 chown -R $SUDO_USER:$SUDO_USER irrvitools
 # and proper permissions
 chmod -R +x irrvitools/bin
@@ -37,5 +38,5 @@ grep -qF "$TOADD" ~/.bashrc || echo $TOADD >> ~/.bashrc
 # modification may produce ID 107 errors.
 
 ###iRRVi#PYREQ###
-pip install requests psd-tools Pillow
+pip install requests psd-tools Pillow flask furl
 echo "installed irrvitools :)"
